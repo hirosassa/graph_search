@@ -98,7 +98,7 @@ class Graph:
         '''
         return self._dfs(self.backward_edge_set, node)
 
-    def visualize(self):
+    def visualize(self, filepath):
         '''
         This method visualize the graph by graphviz format.
         '''
@@ -114,22 +114,22 @@ class Graph:
         # render the graph
         graph = gv.add_edges(
             gv.add_nodes(gv.digraph(), nodes), edges
-        ).render('graph')
+        ).render(filepath)
 
 if __name__ == '__main__':
     # construct a new graph
     g = Graph()
-    ls = ['1.txt', '2.txt', '3.txt', '4.txt', '5.txt', '6.txt']
+    ls = ['sample/1.txt', 'sample/2.txt', 'sample/3.txt', 'sample/4.txt', 'sample/5.txt', 'sample/6.txt']
     g.construct_graph(ls)
     print(g.node_set)
     print(g.forward_edge_set)
 
     # predecessor and successor search
-    print(g.pred_nodes('5'))
-    print(g.succ_nodes('5'))
+    print(g.pred_nodes('3'))
+    print(g.succ_nodes('3'))
 
     # visualize
-    g.visualize()
+    g.visualize('sample/graph')
 
     # dump
     g.dump_graph()
