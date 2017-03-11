@@ -40,7 +40,9 @@ class Graph:
         This method outputs the graph.
         '''
         with open('graph.pickle', 'wb') as f:
-            pickle.dump([self.node_set, self.forward_edge_set, self.backward_edge_set], f)
+            pickle.dump([self.node_set,
+                         self.forward_edge_set,
+                         self.backward_edge_set], f)
 
     def load_graph(self):
         '''
@@ -52,7 +54,7 @@ class Graph:
         self.forward_edge_set = graph_data[1]
         self.backward_edge_set = graph_data[2]
             
-    def construct_graph(self, filenames):
+    def construct_from_files(self, filenames):
         '''
         This method constructs graph from an input list of file paths.
         '''
@@ -68,6 +70,16 @@ class Graph:
                 prior_node.strip()
                 self.insert_edge(prior_node, current_node)        
 
+    def construct_from_edgeset(self, dependencies):
+        '''
+        This method constructs graph from an input dependencies
+        represented as dictionary whose key is current node
+        and value is the list of prior nodes.
+        '''
+        for current_node, prior_nodes in dependencies.items():
+            for prior_node in prior_nodes:
+                self.insert_edge(prior_node, current_node)
+        
     def _dfs(self, edge_set, start_node):
         '''
         This method search the set of reachable nodes from start_node
@@ -119,7 +131,8 @@ class Graph:
 if __name__ == '__main__':
     # construct a new graph
     g = Graph()
-    ls = ['sample/1.txt', 'sample/2.txt', 'sample/3.txt', 'sample/4.txt', 'sample/5.txt', 'sample/6.txt']
+    ls = ['sample/1.txt', 'sample/2.txt', 'sample/3.txt',
+          'sample/4.txt', 'sample/5.txt', 'sample/6.txt']
     g.construct_graph(ls)
     print(g.node_set)
     print(g.forward_edge_set)
