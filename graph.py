@@ -137,7 +137,7 @@ if __name__ == '__main__':
     g = Graph()
     ls = ['sample/1.txt', 'sample/2.txt', 'sample/3.txt',
           'sample/4.txt', 'sample/5.txt', 'sample/6.txt']
-    g.construct_graph(ls)
+    g.construct_from_files(ls)
     print(g.node_set)
     print(g.forward_edge_set)
 
