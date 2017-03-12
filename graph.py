@@ -5,12 +5,15 @@ import gv
 import pickle
 
 class Node:
+    '''
+    This class represents node in graph.
+    '''
     def __init__(self, name):
         self.name = name
 
 class Graph:
     '''
-    This class represents directed graph
+    This class represents directed graph.
     '''
     def __init__(self):
         self.node_set = set()
