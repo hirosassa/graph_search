@@ -116,7 +116,8 @@ class Graph:
         '''
         nodes = list(self.node_set)
 
-        # trasform the directed edge set of the graph in the set of (src, dst) tuples
+        # trasform the directed edge set of the graph
+        # in the set of (src, dst) tuples
         tmp = [(src, list(dsts)) for src, dsts in self.forward_edge_set.items()]
         edges = []
         for src, dsts in tmp:
